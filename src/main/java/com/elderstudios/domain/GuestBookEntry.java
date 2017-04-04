@@ -18,10 +18,13 @@ public class GuestBookEntry {
     private Long id;
 
     @NotEmpty
-    private String name;
+    private String firstName;
 
     @NotEmpty
-    private String comment;
+    private String post;
+
+    @NotEmpty
+    private String age;
 
     @CreatedDate
     @Column(nullable = false)
@@ -39,20 +42,20 @@ public class GuestBookEntry {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getComment() {
-        return comment;
+    public String getPost() {
+        return post;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setPost(String post) {
+        this.post = post;
     }
 
     public Date getCreated() {
@@ -69,5 +72,13 @@ public class GuestBookEntry {
 
     public void setLastUpdated(Date lastUpdated) {
         this.lastUpdated = lastUpdated;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
     }
 }

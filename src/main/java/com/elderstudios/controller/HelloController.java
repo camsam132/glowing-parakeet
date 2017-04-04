@@ -73,8 +73,9 @@ public class HelloController {
 		}
 
 		GuestBookEntry existing = guestBookService.findOne (id);
-		existing.setName (form.getName());
-		existing.setComment(form.getComment());
+		existing.setFirstName (form.getFirstName());
+		existing.setPost(form.getPost());
+		existing.setAge(form.getAge());
 		guestBookService.save (existing);
 
 		return "redirect:/";
