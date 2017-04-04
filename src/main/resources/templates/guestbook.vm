@@ -1,3 +1,5 @@
+<h1>Before</h1>
+
 <form method="POST" command="form">
 
     <p>
@@ -31,29 +33,59 @@
 
 #end
 
+<h1>After</h1>
 
+<form method="POST" command="form" action="#" th:action="@{/}" th:object="${personForm}">
+    <table style="width:75%">
+
+        <style>
+            table, th, td {
+                border: 1px solid red;
+                border-collapse: collapse;
+            }
+        </style>
+        <tr>
+            <th>        #springBind("form.firstName")#springShowErrors("<br/>", "text-danger")
+                Name: #springFormInput("form.firstName")</th>
+
+            <th>        #springBind("form.post")#springShowErrors("<br/>", "text-danger")
+                Insert Your Comment: #springFormInput("form.post")</th>
+
+            <th>        #springBind("form.age")#springShowErrors("<br/>", "text-danger")
+                Insert Your Age: #springFormInput("form.age")</th>
+
+            <th><input type="submit"/></th>
+
+        </tr>
+    </table>
+
+</form>
+<br>
 <table style="width:75%">
-#foreach( $entry in $entries )
-    <style>
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-    </style>
-    <tr>
-        <th>First Name</th>
-        <th>Age</th>
-        <th>Comment</th>
-        <th>Edit Post</th>
-        <th>Delete Post</th>
-    </tr>
-    <tr>
-        <td>$entry.firstName</td>
-        <td>$entry.age</td>
-        <td>$entry.post</td>
-        <td><a href="/edit/$entry.id">Edit</a></td>
-        <td><form method="POST" action="/delete/$entry.id"><input type="submit" value="Delete" /></td>
-    </tr>
-#end
+    #foreach( $entry in $entries )
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+        </style>
+        <tr>
+            <th>First Name</th>
+            <th>Comment</th>
+            <th>Age</th>
+            <th>Edit Post</th>
+            <th>Delete Post</th>
+        </tr>
+        <tr>
+            <td>$entry.firstName</td>
+            <td>$entry.post</td>
+            <td>$entry.age</td>
+            <td><a href="/edit/$entry.id">Edit</a></td>
+            <td><form method="POST" action="/delete/$entry.id"><input type="submit" value="Delete" /></td>
+        </tr>
+    #end
 
 </table>
+
+<h1>Background Running Task can be seen in the terminal</h1>
+

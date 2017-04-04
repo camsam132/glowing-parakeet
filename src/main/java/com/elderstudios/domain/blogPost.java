@@ -4,10 +4,24 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+//added for validation
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
 import java.util.Date;
 
+//BG running task
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 public class blogPost {
@@ -18,13 +32,15 @@ public class blogPost {
     private Long id;
 
     @NotEmpty
+    @Size(min=2, max=30)
     private String firstName;
 
     @NotEmpty
     private String post;
 
     @NotEmpty
-    private String age;
+    @Size(min=1, max=3)
+    public String age;
 
     @CreatedDate
     @Column(nullable = false)
@@ -81,4 +97,16 @@ public class blogPost {
     public void setAge(String age) {
         this.age = age;
     }
+
+    //scheduler
+
+    private static final Logger log = LoggerFactory.getLogger(blogPost.class);
+
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+
+    @Scheduled(fixedRate = 5000)
+    public void reportCurrentTime() {
+        log.info("The time is now {}", dateFormat.format(new Date()));
+    }
 }
+
