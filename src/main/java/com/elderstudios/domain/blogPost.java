@@ -10,7 +10,7 @@ import java.util.Date;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class GuestBookEntry {
+public class blogPost {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
