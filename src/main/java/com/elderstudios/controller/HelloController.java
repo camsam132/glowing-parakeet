@@ -1,4 +1,6 @@
-package com.elderstudios.controller;
+/*
+   package com.elderstudios.controller;
+ */
 
 import com.elderstudios.domain.GuestBookEntry;
 import com.elderstudios.service.GuestBookService;
