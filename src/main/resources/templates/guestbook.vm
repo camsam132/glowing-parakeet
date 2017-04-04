@@ -1,6 +1,9 @@
 
 #foreach ( $entry in $entries )
-    $entry.name : $entry.comment</br>
+    $entry.name : $entry.comment
+    <form method="POST" action="/delete/$entry.id">
+        <input type="submit" value="Delete" />
+    </form>
 #end
 
 <form method="POST" command="form">
