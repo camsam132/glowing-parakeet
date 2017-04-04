@@ -52,4 +52,31 @@ public class HelloController {
 
 		return "redirect:/";
 	}
+
+	@RequestMapping (value="/edit/{id}", method = RequestMethod.GET)
+	public String editEntry (Model model, @PathVariable Long id) {
+		model.addAttribute (FORM_KEY, guestBookService.findOne (id));
+		return GUESTBOOK_FORM;
+	}
+
+	@RequestMapping (value="/edit/{id}", method = RequestMethod.POST)
+	public String editSaveGuestBook (Model model,
+									 @PathVariable Long id,
+									 @Valid @ModelAttribute(FORM_KEY) GuestBookEntry form,
+									 BindingResult bindingResult ) {
+
+		if ( bindingResult.hasErrors() ) {
+			model.addAttribute(ENTRIES_KEY, guestBookService.findAll());
+			return GUESTBOOK_FORM;
+		}
+
+		GuestBookEntry existing = guestBookService.findOne (id);
+		existing.setName (form.getName());
+		existing.setComment(form.getComment());
+		guestBookService.save (existing);
+
+		return "redirect:/";
+	}
+
+
 }

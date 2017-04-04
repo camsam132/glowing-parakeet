@@ -24,4 +24,8 @@ public class GuestBookService {
     public void delete(Long id) {
         guestBookEntryRepository.delete(id);
     }
+
+    public GuestBookEntry findOne(Long id) {
+        return guestBookEntryRepository.findOne(id);
+    }
 }
